@@ -114,6 +114,8 @@
     <form
       action="#"
       class="appointment-wrap animate-box fadeInUp animated-fast form"
+      [formGroup]="appointment"
+      (ngSubmit)="bookAppointment()"
     >
       <div class="row form-group">
         <div class="col-md-6">
@@ -123,6 +125,7 @@
             id="fname"
             class="form-control"
             placeholder="Your firstname"
+            formControlName="fname"
           />
         </div>
         <div class="col-md-6">
@@ -132,6 +135,7 @@
             id="lname"
             class="form-control"
             placeholder="Your lastname"
+            formControlName="lname"
           />
         </div>
       </div>
@@ -143,6 +147,7 @@
             id="email"
             class="form-control"
             placeholder="Your email address"
+            formControlName="email"
           />
         </div>
       </div>
@@ -154,6 +159,7 @@
             id="subject"
             class="form-control"
             placeholder="Your Contact Number"
+            formControlName="contact"
           />
         </div>
       </div>
@@ -168,6 +174,7 @@
               font-size: 16px;
               color: #666;
             "
+            formControlName="subject"
           >
             <option selected>Choose Your Subject</option>
             <option>Fever</option>
@@ -188,13 +195,20 @@
             rows="8"
             class="form-control"
             placeholder="Your Message"
+            formControlName="message"
           ></textarea>
         </div>
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-dark" style="font-size: 17px">
-          Submit
-        </button>
+        <input
+          type="submit"
+          class="btn btn-dark"
+          style="font-size: 17px; background-color: lightcoral"
+          value="Submit"
+        />
+      </div>
+      <div *ngIf="submitted" style="font: size 32px; color: lightcyan">
+        Details submitted successfully!
       </div>
     </form>
   </div>

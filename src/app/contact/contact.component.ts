@@ -9,6 +9,7 @@ import { apiService } from '../api.service';
 })
 export class ContactComponent implements OnInit {
   contact!: FormGroup;
+  submitted: boolean = false;
 
   constructor(private fb: FormBuilder, private service: apiService) {}
 
@@ -21,6 +22,8 @@ export class ContactComponent implements OnInit {
     });
   }
   contactForm(): void {
+    this.submitted = true;
     this.service.contactInfo(this.contact.value).subscribe((data) => {});
+    this.contact.reset();
   }
 }

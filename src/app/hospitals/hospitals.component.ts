@@ -9,19 +9,20 @@ import { config } from '../config';
 })
 export class HospitalsComponent implements OnInit {
   hospitals: any = [];
-  webAPI: any = config.api_url + '/hospitals';
+  webAPI: any = config.api_url + 'hospitals';
   spinner: any;
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+    this.spinner = document.getElementById('spinner');
+
     this._getHospitals();
   }
   _getHospitals() {
     this.http.get(this.webAPI).subscribe((data: any) => {
       this.hospitals = data.data;
+      console.log(this.hospitals);
+      this.spinner.classList.add('hidden');
     });
-
-    this.spinner = document.getElementById('spinner');
-    this.spinner.classList.add('hidden');
   }
 }
